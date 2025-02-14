@@ -1,0 +1,252 @@
+[gd_scene load_steps=23 format=3 uid="uid://dyvhrt7f322cn"]
+
+[ext_resource type="Script" uid="uid://cs5nc62vw1bc0" path="res://scripts/dial_mesh_test01.gd" id="1_28d3d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6d0be"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6d0be"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_28d3d"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_28d3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.511756, -0.487961, -0.487961, 0.511756)]
+}
+
+[sub_resource type="Animation" id="Animation_tyhgc"]
+resource_name = "dial_0"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.71633, -0.0535279, -0.0518423, 0.693772)]
+}
+
+[sub_resource type="Animation" id="Animation_1no8v"]
+resource_name = "dial_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.515871, -0.49987, -0.484129, 0.499626)]
+}
+
+[sub_resource type="Animation" id="Animation_bh2lw"]
+resource_name = "dial_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(-0.0212116, 0.706789, 0.706789, -0.0212116)]
+}
+
+[sub_resource type="Animation" id="Animation_yy2wd"]
+resource_name = "dial_3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.47485, 0.523944, 0.523944, 0.47485)]
+}
+
+[sub_resource type="Animation" id="Animation_0t0vn"]
+resource_name = "dial_4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.577057, 0.408662, 0.408663, 0.577057)]
+}
+
+[sub_resource type="Animation" id="Animation_sjnsg"]
+resource_name = "dial_5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.670499, 0.224567, 0.224567, 0.6705)]
+}
+
+[sub_resource type="Animation" id="Animation_6d0be"]
+resource_name = "rotate_dial"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("dial:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(0.718327, 0, 0, 0.695706), Quaternion(0.511756, -0.487961, -0.487961, 0.511756), Quaternion(-0.0212116, 0.706789, 0.706789, -0.0212116), Quaternion(0.47485, 0.523944, 0.523944, 0.47485), Quaternion(0.706715, 0.0235244, 0.0235244, 0.706715)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_28d3d"]
+_data = {
+&"RESET": SubResource("Animation_28d3d"),
+&"dial_0": SubResource("Animation_tyhgc"),
+&"dial_1": SubResource("Animation_1no8v"),
+&"dial_2": SubResource("Animation_bh2lw"),
+&"dial_3": SubResource("Animation_yy2wd"),
+&"dial_4": SubResource("Animation_0t0vn"),
+&"dial_5": SubResource("Animation_sjnsg"),
+&"rotate_dial": SubResource("Animation_6d0be")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6d0be"]
+animation = &"dial_5"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bh2lw"]
+animation = &"dial_3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_28d3d"]
+animation = &"dial_5"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_yy2wd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_6d0be")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_bh2lw")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_28d3d")
+blend_point_2/pos = 0.0
+min_space = 0.0
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0t0vn"]
+animation = &"rotate_dial"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sjnsg"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6d0be"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_yy2wd")
+states/BlendSpace1D/position = Vector2(522, 161)
+states/rotate_dial/node = SubResource("AnimationNodeAnimation_0t0vn")
+states/rotate_dial/position = Vector2(514, 91)
+transitions = ["Start", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_sjnsg")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tyhgc"]
+animation = &"rotate_dial"
+use_custom_timeline = true
+timeline_length = 4.0
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1no8v"]
+graph_offset = Vector2(-354, 29)
+nodes/RotDial/node = SubResource("AnimationNodeAnimation_tyhgc")
+nodes/RotDial/position = Vector2(100, 120)
+nodes/output/position = Vector2(540, 120)
+node_connections = [&"output", 0, &"RotDial"]
+
+[node name="button_round_volume" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("1_28d3d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("BoxMesh_6d0be")
+
+[node name="dial" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.0475765, 0, -0.998868, -0.998868, 0, -0.0475765, 0, 1, 0, 0, 0, 0.59065)
+rotation_edit_mode = 1
+mesh = SubResource("CylinderMesh_6d0be")
+
+[node name="point" type="MeshInstance3D" parent="Node3D/dial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0765216, 0.197591)
+mesh = SubResource("BoxMesh_28d3d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_28d3d")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Node3D"]
+process_mode = 4
+tree_root = SubResource("AnimationNodeStateMachine_6d0be")
+anim_player = NodePath("../AnimationPlayer")
+parameters/BlendSpace1D/blend_position = -0.157709
+
+[node name="AnimationTree2" type="AnimationTree" parent="Node3D"]
+tree_root = SubResource("AnimationNodeBlendTree_1no8v")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985262, 0.171052, 0, -0.171052, 0.985262, 0, 0.471709, 2.02718)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.16118)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 549.0
+offset_right = 809.0
+offset_bottom = 565.0
+max_value = 4.0
+step = 0.1
+
+[connection signal="value_changed" from="CanvasLayer/Control/HSlider" to="Node3D" method="_on_h_slider_value_changed"]

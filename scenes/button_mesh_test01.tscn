@@ -1,0 +1,177 @@
+[gd_scene load_steps=23 format=3 uid="uid://ci0ynoqoeuqtx"]
+
+[ext_resource type="Script" uid="uid://bapves8mwhqng" path="res://scripts/button_mesh_test_01.gd" id="1_ifo2m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ifo2m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_slkr8"]
+sky_material = SubResource("ProceduralSkyMaterial_ifo2m")
+
+[sub_resource type="Environment" id="Environment_wleos"]
+background_mode = 2
+sky = SubResource("Sky_slkr8")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_b04hx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ifo2m"]
+size = Vector3(0.8, 0.2, 0.8)
+
+[sub_resource type="Animation" id="Animation_ifo2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.575103, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b04hx"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.575103, 0), Vector3(0, 0.575103, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_slkr8"]
+resource_name = "press"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.575103, 0), Vector3(0, 0.440352, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wleos"]
+resource_name = "press_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.440352, 0), Vector3(0, 0.440352, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2hhxh"]
+resource_name = "release_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.440352, 0), Vector3(0, 0.575103, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ifo2m"]
+_data = {
+&"RESET": SubResource("Animation_ifo2m"),
+&"idle": SubResource("Animation_b04hx"),
+&"press": SubResource("Animation_slkr8"),
+&"press_on": SubResource("Animation_wleos"),
+&"release_on": SubResource("Animation_2hhxh")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifo2m"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wleos"]
+animation = &"press"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_slkr8"]
+animation = &"press_on"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2hhxh"]
+animation = &"release_on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wleos"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2hhxh"]
+advance_mode = 2
+advance_condition = &"is_press"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hjroo"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fi4lr"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0nnm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m0nnm"]
+states/Start/position = Vector2(182, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_ifo2m")
+states/idle/position = Vector2(367, 100)
+states/press/node = SubResource("AnimationNodeAnimation_wleos")
+states/press/position = Vector2(532, 6)
+states/press_on/node = SubResource("AnimationNodeAnimation_slkr8")
+states/press_on/position = Vector2(694, 100)
+states/release_on/node = SubResource("AnimationNodeAnimation_2hhxh")
+states/release_on/position = Vector2(532, 160)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wleos"), "idle", "press", SubResource("AnimationNodeStateMachineTransition_2hhxh"), "press", "press_on", SubResource("AnimationNodeStateMachineTransition_hjroo"), "press_on", "release_on", SubResource("AnimationNodeStateMachineTransition_fi4lr"), "release_on", "idle", SubResource("AnimationNodeStateMachineTransition_m0nnm")]
+graph_offset = Vector2(14, -112)
+
+[node name="ButtonMeshTest" type="Node3D"]
+script = ExtResource("1_ifo2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wleos")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_b04hx")
+
+[node name="Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575103, 0)
+mesh = SubResource("BoxMesh_ifo2m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ifo2m")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_m0nnm")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_idle = false
+parameters/conditions/is_press = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.970549, 0.240906, 0, -0.240906, 0.970549, 0, 1.08778, 1.54291)

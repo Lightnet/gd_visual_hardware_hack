@@ -1,0 +1,140 @@
+[gd_scene load_steps=13 format=3 uid="uid://boatbooc3ybei"]
+
+[ext_resource type="Script" uid="uid://lcjpy3d2by1q" path="res://scripts/node_base_switch01.gd" id="1_bgvx8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6d0be"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6d0be"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_28d3d"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_bgvx8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NodeBaseSwitch:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0, -0.421677, 0, 0.906746)]
+}
+
+[sub_resource type="Animation" id="Animation_86qgh"]
+resource_name = "off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NodeBaseSwitch:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Quaternion(0, -0.423615, 0, 0.905843), Quaternion(0, -0.423615, 0, 0.905843)]
+}
+
+[sub_resource type="Animation" id="Animation_vfb2m"]
+resource_name = "on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NodeBaseSwitch:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Quaternion(0, 0.423362, 0, 0.905961), Quaternion(0, 0.423362, 0, 0.905961)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgvx8"]
+_data = {
+&"RESET": SubResource("Animation_bgvx8"),
+&"off": SubResource("Animation_86qgh"),
+&"on": SubResource("Animation_vfb2m")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vfb2m"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ib862"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_q2j73"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_vfb2m")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_ib862")
+blend_point_1/pos = 1.0
+value_label = "toggle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86qgh"]
+nodes/switch_val/node = SubResource("AnimationNodeBlendSpace1D_q2j73")
+nodes/switch_val/position = Vector2(-120, 140)
+node_connections = [&"output", 0, &"switch_val"]
+
+[node name="button_round_volume" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("BoxMesh_6d0be")
+
+[node name="NodeBaseSwitch" type="Node3D" parent="Node3D"]
+transform = Transform3D(0.644377, 0, -0.764708, 0, 1, 0, 0.764708, 0, 0.644377, 0, 0, 0.490705)
+rotation_edit_mode = 1
+script = ExtResource("1_bgvx8")
+
+[node name="round" type="MeshInstance3D" parent="Node3D/NodeBaseSwitch"]
+mesh = SubResource("CylinderMesh_6d0be")
+skeleton = NodePath("../..")
+
+[node name="point" type="MeshInstance3D" parent="Node3D/NodeBaseSwitch/round"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0134915, 0.197591)
+mesh = SubResource("BoxMesh_28d3d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_bgvx8")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Node3D"]
+tree_root = SubResource("AnimationNodeBlendTree_86qgh")
+anim_player = NodePath("../AnimationPlayer")
+parameters/switch_val/blend_position = 1.04878
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985262, 0.171052, 0, -0.171052, 0.985262, 0, 0.471709, 2.02718)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.16118)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 549.0
+offset_right = 809.0
+offset_bottom = 565.0
+max_value = 4.0
+step = 0.1
+
+[connection signal="value_changed" from="CanvasLayer/Control/HSlider" to="Node3D" method="_on_h_slider_value_changed"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxav6u7rvrjld"]
+
+[ext_resource type="Script" uid="uid://bmw5pjmbu1v0" path="res://scripts/gui_panel_3d.gd" id="1_evc71"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pgrj4"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_evc71"]
+sky_material = SubResource("ProceduralSkyMaterial_pgrj4")
+
+[sub_resource type="Environment" id="Environment_jte51"]
+background_mode = 2
+sky = SubResource("Sky_evc71")
+tonemap_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_pgrj4"]
+size = Vector2(3, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_evc71"]
+viewport_path = NodePath("GUIPanel3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jte51"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_evc71")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pgrj4"]
+size = Vector3(3, 2, 0.1)
+
+[node name="GUIIn3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jte51")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1488)
+
+[node name="GUIPanel3D" type="Node3D" parent="."]
+script = ExtResource("1_evc71")
+
+[node name="GUI_Plane" type="MeshInstance3D" parent="GUIPanel3D"]
+mesh = SubResource("QuadMesh_pgrj4")
+surface_material_override/0 = SubResource("StandardMaterial3D_jte51")
+
+[node name="Area3D" type="Area3D" parent="GUIPanel3D/GUI_Plane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GUIPanel3D/GUI_Plane/Area3D"]
+shape = SubResource("BoxShape3D_pgrj4")
+
+[node name="SubViewport" type="SubViewport" parent="GUIPanel3D"]
+gui_embed_subwindows = true
+size = Vector2i(560, 360)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="GUIPanel3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="GUIPanel3D/SubViewport/Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Hello
+"
