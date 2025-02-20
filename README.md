@@ -16,5 +16,6 @@
   Thinking of mini game interact and some puzzle game elements.
 
 # refs:
-	* https://x.com/reijowrites/status/1888663860317761851
-	* 
+ * https://x.com/reijowrites/status/1888663860317761851
+ * 
+ * https://www.youtube.com/watch?v=zC4bitHD4VI 13 AMAZING Hacking Games That Make You A Pro Hacker

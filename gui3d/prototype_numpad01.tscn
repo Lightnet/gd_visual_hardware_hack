@@ -1,0 +1,261 @@
+[gd_scene load_steps=12 format=3 uid="uid://cs136sjt1kg1g"]
+
+[ext_resource type="Script" uid="uid://qqpusrmxj7d3" path="res://scripts/gui_panel_3d_02.gd" id="1_5w1v3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3c62o"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_5w1v3"]
+sky_material = SubResource("ProceduralSkyMaterial_3c62o")
+
+[sub_resource type="Environment" id="Environment_ha1js"]
+background_mode = 2
+sky = SubResource("Sky_5w1v3")
+tonemap_mode = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1c8kf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5w1v3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ha1js"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_3c62o"]
+size = Vector2(0.8, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5w1v3"]
+viewport_path = NodePath("NumPad3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ha1js"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_5w1v3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5w1v3"]
+size = Vector3(0.8, 1, 0.1)
+
+[node name="Node2D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ha1js")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 350.0
+offset_bottom = 456.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(96, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.274
+anchor_bottom = 0.375
+offset_right = 0.0999908
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1c8kf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_01" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5w1v3")
+text = " 1 "
+
+[node name="Btn_02" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 2 "
+
+[node name="Btn_03" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 3 "
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_04" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 4 "
+
+[node name="Btn_05" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 5 "
+
+[node name="Btn_06" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 6 "
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_07" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 7 "
+
+[node name="Btn_08" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 8 "
+
+[node name="Btn_09" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 9 "
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_Star" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " * "
+
+[node name="Btn_0" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 0 "
+
+[node name="Btn_Sharp" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " # "
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.67013)
+
+[node name="NumPad3D" type="Node3D" parent="." node_paths=PackedStringArray("node_viewport", "node_quad", "node_area")]
+script = ExtResource("1_5w1v3")
+node_viewport = NodePath("SubViewport")
+node_quad = NodePath("MeshNumPad")
+node_area = NodePath("MeshNumPad/Area3D")
+
+[node name="SubViewport" type="SubViewport" parent="NumPad3D"]
+gui_embed_subwindows = true
+size = Vector2i(96, 180)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="NumPad3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 350.0
+offset_bottom = 456.0
+
+[node name="CenterContainer" type="CenterContainer" parent="NumPad3D/SubViewport/Control"]
+custom_minimum_size = Vector2(96, 160)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.274
+anchor_bottom = 0.375
+offset_right = 0.0999908
+offset_bottom = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NumPad3D/SubViewport/Control/CenterContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1c8kf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_01" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5w1v3")
+text = " 1 "
+
+[node name="Btn_02" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 2 "
+
+[node name="Btn_03" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 3 "
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_04" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 4 "
+
+[node name="Btn_05" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 5 "
+
+[node name="Btn_06" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 6 "
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_07" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 7 "
+
+[node name="Btn_08" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 8 "
+
+[node name="Btn_09" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 9 "
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Btn_Star" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " * "
+
+[node name="Btn_0" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " 0 "
+
+[node name="Btn_Sharp" type="Button" parent="NumPad3D/SubViewport/Control/CenterContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha1js")
+text = " # "
+
+[node name="MeshNumPad" type="MeshInstance3D" parent="NumPad3D"]
+mesh = SubResource("QuadMesh_3c62o")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ha1js")
+
+[node name="Area3D" type="Area3D" parent="NumPad3D/MeshNumPad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NumPad3D/MeshNumPad/Area3D"]
+shape = SubResource("BoxShape3D_5w1v3")
